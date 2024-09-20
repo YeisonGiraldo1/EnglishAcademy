@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            
+            //Define role_id with value default of 1
+            $table->unsignedBigInteger('role_id')->default(1);
+
+            //Restricion clave foranea
+            $table->foreignId('role_id')->constrained()->onDelete('cascade')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
