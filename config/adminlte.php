@@ -320,7 +320,7 @@ return [
         //left drop down panel
         [
             'text' => 'Dashboard',
-            'url' => '',
+            'url' => '/home',
             'icon' => 'fas fa-fw fa-home',
             // 'label' => 4,
             'label_color' => 'success',
@@ -382,7 +382,11 @@ return [
             'icon' => 'fas fa-fw fa-certificate',
         ],
 
-        
+       
+        //Only Show these options if the users has the "administator" role
+        // auth()->user() && auth()->user()->hasRole('administrador') ? [
+
+        // Administrator features section
         ['header' => 'Administrator Functions'],
         //ROLES
         [
@@ -400,17 +404,25 @@ return [
         //USERS
         [
             'text' => 'Create Users',
-            'icon_color' => 'yellow',
-            'url' => '#',
-            'can'         => 'admin', // Solo para administradores
+            'icon_color' => 'blue',
+            'url' => '/users/create',
         ],
+        [
+            'text' => 'List of Users',
+            'icon_color' => 'blue',
+            'url' => '/users',
+        ],
+
+
+
+
+        //CLASSES
         [
             'text' => 'Create Classes',
             'icon_color' => 'cyan',
             'url' => '#',
-            'can'         => 'admin', // Solo para administradores
         ],
-      
+      //  ] : [],  // Si no es administrador, no muestra nada
     ],
 
     /*

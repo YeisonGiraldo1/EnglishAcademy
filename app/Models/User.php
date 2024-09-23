@@ -56,4 +56,15 @@ class User extends Authenticatable
     {
         return $this->role()->where('name', $roleName)->exists();
     }
+
+
+
+
+    
+    //function for get name of especific role 
+    public function getRoleName()
+    {
+        $role = Role::find($this->role_id);
+        return $role ? $role->name : 'N/A';
+    }
 }

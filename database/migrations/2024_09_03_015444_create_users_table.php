@@ -22,8 +22,8 @@ return new class extends Migration
             //Define role_id with value default of 1
             $table->unsignedBigInteger('role_id')->default(1);
 
-            //Restricion clave foranea
-            $table->foreignId('role_id')->constrained()->onDelete('cascade')->default(1);
+            //Then you add the foreign key constraint
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
