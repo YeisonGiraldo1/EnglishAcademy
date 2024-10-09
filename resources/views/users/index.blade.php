@@ -59,14 +59,20 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $u)
+                    @foreach ($users as $user)
                       <tr>
-                        <td>{{ $u->name }}</td>
-                        <td>{{ $u->email }}</td>
-                        <td>{{$u->getRolename()}}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{$user->getRolename()}}</td>
                         <td>
-                            <button type="button" class="btn btn-danger"><i class="fa-solid  fa-trash"></i></button>
-                            <button type="button" class="btn btn-warning"><i class="fa-solid  fa-edit"></i></button>
+                            <a href="{{route('users.edit', $user->id)}}"><button type="button" class="btn btn-warning"><i class="fa-solid  fa-edit"></i></button></a>
+
+
+                            <form action="{{route ('users.destroy', $user->id )}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid  fa-trash"></i></button>
+                        </form>
                         </td>
                       </tr>
                     @endforeach

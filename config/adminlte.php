@@ -419,7 +419,7 @@ return [
         //CLASSES
         [
             'text' => 'Create Classes',
-            'icon_color' => 'cyan',
+            'icon_color' => 'yellow',
             'url' => '#',
         ],
       //  ] : [],  // Si no es administrador, no muestra nada

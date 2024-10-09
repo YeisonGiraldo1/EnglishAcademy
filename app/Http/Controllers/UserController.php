@@ -40,4 +40,22 @@ public function index(){
     $users = User::all();
     return view('users.index', compact('users'));
 }
+
+
+public function destroy($id){
+    $user = User::find($id);
+    $user->delete();
+    return redirect()->route('users.index')
+    ->with('success', 'User deleted successfully');
+}
+
+
+public function edit($id){
+    $user = User::find($id);
+    $roles = Role::all();
+    return view('users.edit', compact('user','roles'));
+}
+
+
+
 }
