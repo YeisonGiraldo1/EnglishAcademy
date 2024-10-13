@@ -45,7 +45,7 @@ Route::get('/users', [UserController::class,'index'] )->name('users.index');
 
 Route::delete('/users/{user}' , [UserController::class, 'destroy'])->name('users.destroy');
 
-Route::get('/users/{user}edit',[UserController::class, 'edit'])->name('users.edit');
+Route::get('/users/{user}/edit',[UserController::class, 'edit'])->name('users.edit');
 
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 

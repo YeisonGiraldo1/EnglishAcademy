@@ -8,38 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Index Users</title>
-
-    <!-- Add some CSS or Bootstrap classes if needed -->
-    {{-- <style>
-        .table-container {
-            margin: 50px auto;
-            max-width: 00px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .table {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .table thead {
-            background-color: #007bff;
-            color: white;
-        }
-        
-        .empty-message {
-            text-align: center;
-            color: red;
-            font-style: italic;
-        }
-    </style> --}}
 </head>
 <body>
 
@@ -55,7 +27,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
-                    <th>Acciones</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -63,16 +35,24 @@
                       <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{$user->getRolename()}}</td>
+                        <td>{{ $user->getRolename() }}</td>
                         <td>
-                            <a href="{{route('users.edit', $user->id)}}"><button type="button" class="btn btn-warning"><i class="fa-solid  fa-edit"></i></button></a>
+                            <a href="{{ route('users.edit', $user->id) }}">
+                                <button type="button" class="btn btn-warning">
+                                    <i class="fa-solid fa-edit"></i>
+                                </button>
+                            </a>
 
+                            <!-- Button to trigger SweetAlert and delete action -->
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $user->id }})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
 
-                            <form action="{{route ('users.destroy', $user->id )}}" method="POST" class="d-inline">
+                            <!-- Form for deleting user -->
+                            <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-none">
                                 @csrf
                                 @method('DELETE')
-                            <button type="submit" class="btn btn-danger"><i class="fa-solid  fa-trash"></i></button>
-                        </form>
+                            </form>
                         </td>
                       </tr>
                     @endforeach
@@ -80,9 +60,26 @@
             </table>
         @endif
     </div>
-    
+
+    <script>
+        function confirmDelete(userId) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`delete-form-${userId}`).submit();
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
 
 @stop
-
