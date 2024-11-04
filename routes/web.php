@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +14,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//ROUTES ROLES
+//ROLES ROUTES
 
 // returns the form for adding a role
 Route::get('/roles/create', RoleController::class . '@create')->name('roles.create');
@@ -33,13 +34,11 @@ Route::get('/roles/{role}/edit', RoleController::class .'@edit')->name('roles.ed
 Route::put('/roles/{role}', RoleController::class .'@update')->name('roles.update');
 
 
-//ROUTE USERS
+//USERS ROUTES
 
 Route::get('/users/create', [UserController ::class, 'create'])->name('users.create');
 
 Route::post('/users', [UserController ::class, 'store'])->name('users.store');
-
-Route::get('/users', [UserController::class,'index'] )->name('users.index');
 
 Route::get('/users', [UserController::class,'index'] )->name('users.index');
 
@@ -50,5 +49,10 @@ Route::get('/users/{user}/edit',[UserController::class, 'edit'])->name('users.ed
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
 
+//CLASSES ROUTES
 
+Route::get('/classes/create',ClassController ::class . '@create')->name('classes.create');
 
+Route::post('/classes', [ClassController ::class, 'store'])->name('classes.store');
+
+Route::get('/classes', [ClassController::class, 'index'])->name('classes.index');

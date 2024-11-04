@@ -22,9 +22,7 @@
     </head>
     <body>
         <main>
-            <h1>ENGLISH ACADEMY</h1>
-            <
-        </main>
+            <h1>ENGLISH ACADEMY</h1> </main>
     </body>
     
 @endsection

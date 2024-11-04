@@ -407,8 +407,7 @@ return [
             'icon_color' => 'blue',
             'url' => '/users/create',
         ],
-        [
-            'text' => 'List of Users',
+        [ 'text' => 'List of Users',
             'icon_color' => 'blue',
             'url' => '/users',
         ],
@@ -420,7 +419,14 @@ return [
         [
             'text' => 'Create Classes',
             'icon_color' => 'yellow',
-            'url' => '#',
+            'url' => 'classes/create',
+        ],
+
+
+        [
+            'text' => 'List Classes',
+            'icon_color' => 'yellow',
+            'url' => '/classes',
         ],
       //  ] : [],  // Si no es administrador, no muestra nada
     ],
